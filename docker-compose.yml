@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  yumoreski_api:
+    build: .
+    container_name: "yumoreski_api"
+    env_file: 
+      - .env
+    ports:
+      - "7777:7777"
+    restart: "always"
