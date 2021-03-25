@@ -30,11 +30,11 @@ def get_random_anek(count):
 
 """ COUNTROLLER """
 
-stub = Flask(__name__)
-cors = CORS(stub)
+app = Flask(__name__)
+cors = CORS(app)
 
 
-@stub.route('/random_anek')
+@app.route('/random_anek')
 @cross_origin()
 def random_anek(methods=['GET']):
 	c = get_count()
@@ -44,4 +44,4 @@ def random_anek(methods=['GET']):
 
 
 if __name__ == "__main__":
-	stub.run(host="0.0.0.0", port=7777, debug=False)
+	app.run(host="0.0.0.0", port=6789, debug=False)
