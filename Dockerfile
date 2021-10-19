@@ -4,7 +4,8 @@ LABEL maintainer="Alexander Zorkin"
 ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
-COPY . .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+COPY . .
 CMD [ "python3", "bot.py" ]
