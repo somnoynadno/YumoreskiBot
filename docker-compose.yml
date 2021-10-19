@@ -6,6 +6,4 @@ services:
     container_name: "yumoreski_bot"
     env_file: 
       - .env
-    ports:
-      - "6789:6789"
     restart: "always"
