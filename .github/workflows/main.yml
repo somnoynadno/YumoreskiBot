@@ -28,5 +28,4 @@ jobs:
           script: |
             cd /home/somnoynadno/services/YumoreskiBot
             git pull
-            cd ..
             docker-compose up --build -d
