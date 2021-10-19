@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  yumoreski_api:
+  yumoreski_bot:
     build: .
-    container_name: "yumoreski_api"
+    container_name: "yumoreski_bot"
     env_file: 
       - .env
     ports:
