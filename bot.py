@@ -2,6 +2,8 @@ import os
 import random
 import vk_api
 
+from datetime import datetime
+
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.longpoll import VkLongPoll, VkEventType
 
@@ -19,23 +21,40 @@ def main():
             longpoll = VkBotLongPoll(bot_session, COMMUNITY_ID)
             for event in longpoll.listen():
                 if event.type == VkBotEventType.MESSAGE_NEW:
-                    print(event)
+                    # print(event)
 
-                    text = event.object["message"]["text"].lower()
+                    def answer(message: str):
+                        VK.messages.send(
+                            random_id=random.randint(1, 10000000000),
+                            message=message,
+                            chat_id=event.chat_id
+                        )
+
+                    text = event.object["message"].get("text", "").lower()
                     if "анек" in text or "юмор" in text:
                         try:
-                            VK.messages.send(
-                                random_id=random.randint(1, 10000000000),
-                                message=str(get_random_anek()['items'][0]['text']),
-                                chat_id=event.chat_id
-                            )
+                            anek = get_random_anek(funny_only=True)
                         except Exception as e:
                             print(str(e))
-                            VK.messages.send(
-                                random_id=random.randint(1, 10000000000),
-                                message='Ля, не вышло =(',
-                                chat_id=event.chat_id
-                            )
+                            answer(f'Ничего себе! ({str(e)})')
+                            continue
+
+                        text = anek.get('text')
+                        date = anek.get('date')
+                        likes = anek.get('likes', {}).get('count')
+
+                        if not text:
+                            answer('Сегодня без анека =)')
+                            continue
+
+                        d = datetime.utcfromtimestamp(date).strftime('%d.%m.%Y')
+                        message = f'[{likes} лайков]\n{text}\n\n{d}'
+
+                        try:
+                            answer(message)
+                        except Exception as e:
+                            print(str(e))
+                            answer(f'Ничего себе! ({str(e)})')
 
 
 if __name__ == '__main__':
