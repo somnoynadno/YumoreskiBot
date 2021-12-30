@@ -1,5 +1,6 @@
-# Environment
+# Project and environment
 .env
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
