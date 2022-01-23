@@ -6,7 +6,7 @@ from time import sleep
 
 
 FUNNY_THRESHOLD = 2000
-SLEEP_INTERVAL = 0.3
+SLEEP_INTERVAL = 0.5
 
 token = os.getenv('ACCESS_TOKEN')
 session = vk.Session(access_token=token) 
