@@ -13,6 +13,10 @@ COMMUNITY_ID = int(os.getenv("COMMUNITY_ID", 0))
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 
 def main():
+        if not ACCESS_TOKEN:
+            print("ACCESS_TOKEN is not provided, exiting")
+            exit(1)
+
         bot_session = vk_api.VkApi(token=ACCESS_TOKEN)
         VK = bot_session.get_api()
 
