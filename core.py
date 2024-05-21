@@ -8,7 +8,7 @@ from time import sleep
 FUNNY_THRESHOLD = 2000
 SLEEP_INTERVAL = 0.5
 VK_API_VERSION = 5.131
-token = os.getenv('BOT_TOKEN')
+token = os.getenv('ACCESS_TOKEN')
 
 api = vk.API(access_token=token)
 
@@ -16,11 +16,11 @@ api = vk.API(access_token=token)
 def get_random_anek(funny_only=False):
     while True:
         sleep(SLEEP_INTERVAL)  # prevent vk.exceptions.VkAPIError: Too many requests per second
-        count = api.wall.get(v=VK_API_VERSION, domain='https://vk.com/jumoreski', owner_id=-92876084, count=1)['count']
+        count = api.wall.get(v=VK_API_VERSION, domain='jumoreski', owner_id=-92876084, count=1)['count']
 
         c = randint(0, count)
         
-        r = api.wall.get(v=VK_API_VERSION, domain='https://vk.com/jumoreski', owner_id=-92876084, count=1, offset=c)
+        r = api.wall.get(v=VK_API_VERSION, domain='jumoreski', owner_id=-92876084, count=1, offset=c)
         if len(r['items']) == 0:
            continue
 
