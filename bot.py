@@ -10,14 +10,14 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from core import get_random_anek
 
 COMMUNITY_ID = int(os.getenv("COMMUNITY_ID", 0))
-ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 def main():
-        if not ACCESS_TOKEN:
-            print("ACCESS_TOKEN is not provided, exiting")
+        if not BOT_TOKEN:
+            print("BOT_TOKEN is not provided, exiting")
             exit(1)
 
-        bot_session = vk_api.VkApi(token=ACCESS_TOKEN)
+        bot_session = vk_api.VkApi(token=BOT_TOKEN)
         VK = bot_session.get_api()
 
         while True:
